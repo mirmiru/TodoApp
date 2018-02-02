@@ -17,7 +17,7 @@
         self.sections = @[@"Unfinished", @"Finished"];
         self.finishedTasksArray = [[NSMutableArray alloc] init];
         self.unfinishedTasksArray = [[NSMutableArray alloc] init];
-        //self.savedTasks = [NSUserDefaults standardUserDefaults];
+        self.savedTasks = [NSUserDefaults standardUserDefaults];
     }
     return self;
 }
@@ -34,15 +34,16 @@
 -(void) finishTask:(Todo*)todoTask index:(int)indexNumber{
     //Add to finished task array
     [self.finishedTasksArray addObject:todoTask];
-    int count = (int)[self.finishedTasksArray count];
-    /*
+    
     //Remove from todo task array
-    [self.unfinishedTasksArray removeObjectAtIndex:indexNumber];
-     */
+    [self.unfinishedTasksArray removeObject:todoTask];
 }
 
 -(void)updateNSUserDefaults {
     NSLog(@"Updating NSUserDefaults");
+    
+    
+    
     [self.savedTasks setObject:self.unfinishedTasksArray forKey:@"UnfinishedTasks"];
     [self.savedTasks synchronize];
 }

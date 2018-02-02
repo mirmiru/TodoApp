@@ -21,18 +21,20 @@
     [super viewDidLoad];
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
     self.navigationItem.title = @"Todo List";
     self.todoList = [[TodoList alloc] initTodoList];
     
-    
     //Kollar om det finns något sparat.
+    /*
     NSArray *array = [self.todoList.savedTasks objectForKey:@"UnfinishedTasks"];
     if (array) {
         self.todoList.unfinishedTasksArray = array.mutableCopy;
-    }    
+    }
+    */
 }
 
-//RELOAD TABLE
+//Reload tables
 - (void)viewWillAppear:(BOOL)animated {
     [self.tableView reloadData];
 }
@@ -58,22 +60,32 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TodoCell" forIndexPath:indexPath];
     
-    //Customize cell for Priority-marked tasks
     NSString *priority;
-    if ([self.todoList.unfinishedTasksArray[indexPath.row] priorityMark]) {
-        priority = @"PRIO";
-        cell.backgroundColor = [UIColor colorWithRed:0.98 green:0.82 blue:0.52 alpha:1.0];
+    
+    if(indexPath.section == 0) {
+        cell.textLabel.text = [self.todoList.unfinishedTasksArray[indexPath.row] todoTaskName];
+            if ([self.todoList.unfinishedTasksArray[indexPath.row] priorityMark]) {
+                priority = @"PRIO";
+                cell.backgroundColor = [UIColor colorWithRed:0.98 green:0.82 blue:0.52 alpha:1.0];
+            } else {
+                cell.backgroundColor = [UIColor whiteColor];
+            }
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    } else {
+        cell.textLabel.text = [self.todoList.finishedTasksArray[indexPath.row] todoTaskName];
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        cell.backgroundColor = [UIColor whiteColor];
     }
-    cell.textLabel.text = [self.todoList.unfinishedTasksArray[indexPath.row] todoTaskName];
     cell.detailTextLabel.text = priority;
     
     //Check if task marked as finished
+    /*
     if ([self.todoList.unfinishedTasksArray[indexPath.row] finished]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
-    
+     */
     return cell;
 }
 
@@ -87,10 +99,12 @@
     if (todo.finished) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
         [self.todoList finishTask:todo index:(int)indexPath.row];
+        todo.priorityMark = NO;
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
+        todo.finished = NO;
     }
-    
+    [self.tableView reloadData];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -133,7 +147,6 @@
 }
 */
 
-
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -143,10 +156,8 @@
     
     if ([segue.identifier isEqualToString:@"AddTask"]) {
         AddTaskViewController *addTask = [segue destinationViewController];
-        addTask.todoTaskArray = self.todoList.unfinishedTasksArray;
+        addTask.todoList = self.todoList;
     }
-    
 }
-
 
 @end

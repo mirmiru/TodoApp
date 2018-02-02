@@ -40,7 +40,7 @@
     //Add to todo array
     Todo *todo = [[Todo alloc] initTask:name priority:priority];
     
-    [self.todoTaskArray addObject:todo];
+    [self.todoList.unfinishedTasksArray addObject:todo];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
