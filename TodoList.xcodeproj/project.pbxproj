@@ -8,24 +8,33 @@
 
 /* Begin PBXBuildFile section */
 		A55285962020B6430038BBE5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A55285952020B6430038BBE5 /* AppDelegate.m */; };
-		A55285992020B6430038BBE5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A55285982020B6430038BBE5 /* ViewController.m */; };
 		A552859C2020B6430038BBE5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A552859A2020B6430038BBE5 /* Main.storyboard */; };
 		A552859E2020B6430038BBE5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A552859D2020B6430038BBE5 /* Assets.xcassets */; };
 		A55285A12020B6430038BBE5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A552859F2020B6430038BBE5 /* LaunchScreen.storyboard */; };
 		A55285A42020B6430038BBE5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A55285A32020B6430038BBE5 /* main.m */; };
+		A55285AC2020B82A0038BBE5 /* TodoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A55285AB2020B82A0038BBE5 /* TodoTableViewController.m */; };
+		A55285AF2020BDA00038BBE5 /* Todo.m in Sources */ = {isa = PBXBuildFile; fileRef = A55285AE2020BDA00038BBE5 /* Todo.m */; };
+		A55285B22020C3D80038BBE5 /* TodoList.m in Sources */ = {isa = PBXBuildFile; fileRef = A55285B12020C3D80038BBE5 /* TodoList.m */; };
+		A55285B82020DB9B0038BBE5 /* AddTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A55285B72020DB9B0038BBE5 /* AddTaskViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A55285912020B6430038BBE5 /* TodoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A55285942020B6430038BBE5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A55285952020B6430038BBE5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		A55285972020B6430038BBE5 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		A55285982020B6430038BBE5 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		A552859B2020B6430038BBE5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A552859D2020B6430038BBE5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A55285A02020B6430038BBE5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A55285A22020B6430038BBE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A55285A32020B6430038BBE5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A55285AA2020B82A0038BBE5 /* TodoTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodoTableViewController.h; sourceTree = "<group>"; };
+		A55285AB2020B82A0038BBE5 /* TodoTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodoTableViewController.m; sourceTree = "<group>"; };
+		A55285AD2020BDA00038BBE5 /* Todo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Todo.h; sourceTree = "<group>"; };
+		A55285AE2020BDA00038BBE5 /* Todo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Todo.m; sourceTree = "<group>"; };
+		A55285B02020C3D80038BBE5 /* TodoList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodoList.h; sourceTree = "<group>"; };
+		A55285B12020C3D80038BBE5 /* TodoList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodoList.m; sourceTree = "<group>"; };
+		A55285B62020DB9B0038BBE5 /* AddTaskViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddTaskViewController.h; sourceTree = "<group>"; };
+		A55285B72020DB9B0038BBE5 /* AddTaskViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddTaskViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,15 +67,21 @@
 		A55285932020B6430038BBE5 /* TodoList */ = {
 			isa = PBXGroup;
 			children = (
+				A55285AA2020B82A0038BBE5 /* TodoTableViewController.h */,
+				A55285AB2020B82A0038BBE5 /* TodoTableViewController.m */,
 				A55285942020B6430038BBE5 /* AppDelegate.h */,
 				A55285952020B6430038BBE5 /* AppDelegate.m */,
-				A55285972020B6430038BBE5 /* ViewController.h */,
-				A55285982020B6430038BBE5 /* ViewController.m */,
 				A552859A2020B6430038BBE5 /* Main.storyboard */,
+				A55285B62020DB9B0038BBE5 /* AddTaskViewController.h */,
+				A55285B72020DB9B0038BBE5 /* AddTaskViewController.m */,
 				A552859D2020B6430038BBE5 /* Assets.xcassets */,
 				A552859F2020B6430038BBE5 /* LaunchScreen.storyboard */,
 				A55285A22020B6430038BBE5 /* Info.plist */,
 				A55285A32020B6430038BBE5 /* main.m */,
+				A55285AD2020BDA00038BBE5 /* Todo.h */,
+				A55285AE2020BDA00038BBE5 /* Todo.m */,
+				A55285B02020C3D80038BBE5 /* TodoList.h */,
+				A55285B12020C3D80038BBE5 /* TodoList.m */,
 			);
 			path = TodoList;
 			sourceTree = "<group>";
@@ -142,9 +157,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A55285992020B6430038BBE5 /* ViewController.m in Sources */,
 				A55285A42020B6430038BBE5 /* main.m in Sources */,
+				A55285B82020DB9B0038BBE5 /* AddTaskViewController.m in Sources */,
+				A55285AC2020B82A0038BBE5 /* TodoTableViewController.m in Sources */,
 				A55285962020B6430038BBE5 /* AppDelegate.m in Sources */,
+				A55285AF2020BDA00038BBE5 /* Todo.m in Sources */,
+				A55285B22020C3D80038BBE5 /* TodoList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

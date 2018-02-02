@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  TodoTableViewController.h
 //  TodoList
 //
 //  Created by Milja Virtanen on 2018-01-30.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface TodoTableViewController : UITableViewController
 
 @end
-
