@@ -13,30 +13,36 @@
 
 @interface TodoTableViewController ()
 @property TodoList *todoList;
+@property NSUserDefaults *savedData;
+@property NSDictionary *dictionary;
 @end
 
-@implementation TodoTableViewController
+@implementation TodoTableViewController {
+    BOOL firstLoad;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
+    firstLoad = YES;
     self.navigationItem.title = @"Todo List";
     self.todoList = [[TodoList alloc] initTodoList];
     
-    //Kollar om det finns något sparat.
-    /*
-    NSArray *array = [self.todoList.savedTasks objectForKey:@"UnfinishedTasks"];
-    if (array) {
-        self.todoList.unfinishedTasksArray = array.mutableCopy;
-    }
-    */
+    NSUserDefaults *savedData = [NSUserDefaults standardUserDefaults];
+    self.todoList.unfinishedTasksArray = [self.todoList loadUnfinishedDictionaries];
+    self.todoList.finishedTasksArray = [self.todoList loadFinishedDictionaries];
+    //self.todoList.unfinishedTasksArray = array;
 }
 
 //Reload tables
 - (void)viewWillAppear:(BOOL)animated {
     [self.tableView reloadData];
+    if (!firstLoad) {
+        [self.todoList save];
+        NSUserDefaults *savedData = [NSUserDefaults standardUserDefaults];
+        NSMutableArray *array = [self.todoList loadUnfinishedDictionaries];
+        NSLog(@"Found: %d", (int)[array count]);
+    }
+    firstLoad = NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -100,6 +106,7 @@
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
         [self.todoList finishTask:todo index:(int)indexPath.row];
         todo.priorityMark = NO;
+        [self.todoList save];
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
         todo.finished = NO;

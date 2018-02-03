@@ -9,7 +9,9 @@
 #import "TodoList.h"
 #import "Todo.h"
 
-@implementation TodoList
+@implementation TodoList {
+    NSMutableDictionary *dictionary;
+}
 
 -(instancetype)initTodoList {
     self = [super init];
@@ -17,17 +19,8 @@
         self.sections = @[@"Unfinished", @"Finished"];
         self.finishedTasksArray = [[NSMutableArray alloc] init];
         self.unfinishedTasksArray = [[NSMutableArray alloc] init];
-        self.savedTasks = [NSUserDefaults standardUserDefaults];
     }
     return self;
-}
-
-//Add new task
--(void) addNewTask:(Todo*)todoTask {
-    [self.unfinishedTasksArray addObject:todoTask];
-    int testCount = (int)[self.unfinishedTasksArray count];
-    NSLog(@"%d", testCount);
-    [self updateNSUserDefaults];
 }
 
 //Set task as finished
@@ -39,13 +32,62 @@
     [self.unfinishedTasksArray removeObject:todoTask];
 }
 
--(void)updateNSUserDefaults {
-    NSLog(@"Updating NSUserDefaults");
+//Save data
+- (void) save {
+    NSUserDefaults *savedData = [NSUserDefaults standardUserDefaults];
     
+    NSMutableArray *unfinishedDictionaries = [[NSMutableArray alloc] init];
+    for(Todo *todo in self.unfinishedTasksArray) {
+        NSDictionary *dictionary = @{@"Name": todo.todoTaskName,
+                                     @"Priority": @(todo.priorityMark)
+                                     };
+        [unfinishedDictionaries addObject:dictionary];
+    }
+    [savedData setObject:unfinishedDictionaries forKey:@"Unfinished"];
+    NSLog(@"SAVED UNFINISHED DATA");
     
+    NSMutableArray *finishedDictionaries = [[NSMutableArray alloc] init];
+    for(Todo *todo in self.finishedTasksArray) {
+        NSDictionary *dictionary = @{ @"Name": todo.todoTaskName};
+        [finishedDictionaries addObject:dictionary];
+    }
+    [savedData setObject:finishedDictionaries forKey:@"Finished"];
+    NSLog(@"SAVED FINISHED DATA");
     
-    [self.savedTasks setObject:self.unfinishedTasksArray forKey:@"UnfinishedTasks"];
-    [self.savedTasks synchronize];
+    [savedData synchronize];
+    
+    //TEST
+    NSLog(@"Count: %d", (int)[unfinishedDictionaries count]);
+    NSLog(@"Count: %d", (int)[finishedDictionaries count]);
+}
+
+//Load saved data - Unfinished tasks
+- (NSMutableArray*) loadUnfinishedDictionaries {
+    NSUserDefaults *savedData = [NSUserDefaults standardUserDefaults];
+    
+    self.unfinishedTasksArray = [[NSMutableArray alloc] init];
+    for(NSDictionary *dictionary in [savedData objectForKey:@"Unfinished"]) {
+        NSString *name = [dictionary valueForKey:@"Name"];
+        BOOL priority = [dictionary valueForKey:@"Priority"];
+        Todo *todo = [[Todo alloc] initTask:name priority:priority];
+        
+        [self.unfinishedTasksArray addObject:todo];
+    }
+    return self.unfinishedTasksArray;
+}
+
+//Load saved data - Finished tasks
+- (NSMutableArray*) loadFinishedDictionaries {
+    NSUserDefaults *savedData = [NSUserDefaults standardUserDefaults];
+    
+    self.finishedTasksArray = [[NSMutableArray alloc] init];
+    for(NSDictionary *dictionary in [savedData objectForKey:@"Finished"]) {
+        NSString *name = [dictionary valueForKey:@"Name"];
+        Todo *todo = [[Todo alloc] initTask:name priority:NO];
+        
+        [self.finishedTasksArray addObject:todo];
+    }
+    return self.finishedTasksArray;
 }
 
 @end

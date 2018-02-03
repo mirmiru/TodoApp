@@ -41,6 +41,7 @@
     Todo *todo = [[Todo alloc] initTask:name priority:priority];
     
     [self.todoList.unfinishedTasksArray addObject:todo];
+    [self.todoList save];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
