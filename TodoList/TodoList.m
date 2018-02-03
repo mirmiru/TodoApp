@@ -42,9 +42,10 @@
                                      @"Priority": @(todo.priorityMark)
                                      };
         [unfinishedDictionaries addObject:dictionary];
+        NSLog(@"PRIORITY? %d", todo.priorityMark);
+        [dictionary allValues];
     }
     [savedData setObject:unfinishedDictionaries forKey:@"Unfinished"];
-    NSLog(@"SAVED UNFINISHED DATA");
     
     NSMutableArray *finishedDictionaries = [[NSMutableArray alloc] init];
     for(Todo *todo in self.finishedTasksArray) {
@@ -52,13 +53,8 @@
         [finishedDictionaries addObject:dictionary];
     }
     [savedData setObject:finishedDictionaries forKey:@"Finished"];
-    NSLog(@"SAVED FINISHED DATA");
     
     [savedData synchronize];
-    
-    //TEST
-    NSLog(@"Count: %d", (int)[unfinishedDictionaries count]);
-    NSLog(@"Count: %d", (int)[finishedDictionaries count]);
 }
 
 //Load saved data - Unfinished tasks

@@ -18,16 +18,16 @@
 @end
 
 @implementation TodoTableViewController {
-    BOOL firstLoad;
+    //BOOL firstLoad;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    firstLoad = YES;
+    //firstLoad = YES;
     self.navigationItem.title = @"Todo List";
     self.todoList = [[TodoList alloc] initTodoList];
     
-    NSUserDefaults *savedData = [NSUserDefaults standardUserDefaults];
+    //NSUserDefaults *savedData = [NSUserDefaults standardUserDefaults];
     self.todoList.unfinishedTasksArray = [self.todoList loadUnfinishedDictionaries];
     self.todoList.finishedTasksArray = [self.todoList loadFinishedDictionaries];
     //self.todoList.unfinishedTasksArray = array;
@@ -36,13 +36,15 @@
 //Reload tables
 - (void)viewWillAppear:(BOOL)animated {
     [self.tableView reloadData];
-    if (!firstLoad) {
-        [self.todoList save];
-        NSUserDefaults *savedData = [NSUserDefaults standardUserDefaults];
-        NSMutableArray *array = [self.todoList loadUnfinishedDictionaries];
-        NSLog(@"Found: %d", (int)[array count]);
-    }
-    firstLoad = NO;
+    /*
+     if (!firstLoad) {
+     [self.todoList save];
+     NSUserDefaults *savedData = [NSUserDefaults standardUserDefaults];
+     NSMutableArray *array = [self.todoList loadUnfinishedDictionaries];
+     NSLog(@"Found: %d", (int)[array count]);
+     }
+     firstLoad = NO;
+     */
 }
 
 - (void)didReceiveMemoryWarning {
@@ -70,12 +72,12 @@
     
     if(indexPath.section == 0) {
         cell.textLabel.text = [self.todoList.unfinishedTasksArray[indexPath.row] todoTaskName];
-            if ([self.todoList.unfinishedTasksArray[indexPath.row] priorityMark]) {
-                priority = @"PRIO";
-                cell.backgroundColor = [UIColor colorWithRed:0.98 green:0.82 blue:0.52 alpha:1.0];
-            } else {
-                cell.backgroundColor = [UIColor whiteColor];
-            }
+        if ([self.todoList.unfinishedTasksArray[indexPath.row] priorityMark]) {
+            priority = @"PRIO";
+            cell.backgroundColor = [UIColor colorWithRed:0.98 green:0.82 blue:0.52 alpha:1.0];
+        } else {
+            cell.backgroundColor = [UIColor whiteColor];
+        }
         cell.accessoryType = UITableViewCellAccessoryNone;
     } else {
         cell.textLabel.text = [self.todoList.finishedTasksArray[indexPath.row] todoTaskName];
@@ -86,11 +88,11 @@
     
     //Check if task marked as finished
     /*
-    if ([self.todoList.unfinishedTasksArray[indexPath.row] finished]) {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    } else {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
+     if ([self.todoList.unfinishedTasksArray[indexPath.row] finished]) {
+     cell.accessoryType = UITableViewCellAccessoryCheckmark;
+     } else {
+     cell.accessoryType = UITableViewCellAccessoryNone;
+     }
      */
     return cell;
 }
@@ -100,7 +102,7 @@
     Todo *todo = self.todoList.unfinishedTasksArray[indexPath.row];
     BOOL finished = todo.finished;
     todo.finished = !finished;
-
+    
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if (todo.finished) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -121,38 +123,38 @@
 }
 
 /*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+ // Override to support conditional editing of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+ // Return NO if you do not want the specified item to be editable.
+ return YES;
+ }
+ */
 
 /*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+ // Override to support editing the table view.
+ - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+ if (editingStyle == UITableViewCellEditingStyleDelete) {
+ // Delete the row from the data source
+ [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+ } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+ // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+ }
+ }
+ */
 
 /*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+ }
+ */
 
 /*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
 
 #pragma mark - Navigation
 
@@ -168,3 +170,4 @@
 }
 
 @end
+

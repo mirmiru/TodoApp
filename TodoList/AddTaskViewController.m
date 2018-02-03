@@ -20,8 +20,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
 }
 
 //Add a new task and set its priority

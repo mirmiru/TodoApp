@@ -20,21 +20,21 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TodoCell" textLabel="INi-bm-ZRZ" detailTextLabel="VqL-XK-DuV" rowHeight="67" style="IBUITableViewCellStyleValue1" id="xyC-sF-h0Q">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="67"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="67"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xyC-sF-h0Q" id="oGk-hB-Ra2">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="66.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="66"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="INi-bm-ZRZ">
-                                            <rect key="frame" x="16" y="23" width="33.5" height="20.5"/>
+                                            <rect key="frame" x="16" y="23" width="33" height="21"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VqL-XK-DuV">
-                                            <rect key="frame" x="315" y="23" width="44" height="20.5"/>
+                                            <rect key="frame" x="315" y="23" width="44" height="21"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
