@@ -8,7 +8,7 @@
 
 #import "Todo.h"
 
-@implementation Todo
+@implementation Todo 
 
 //Initiate new task - set name and priority
 -(instancetype)initTask:(NSString*)todoTaskName priority:(BOOL)priority {

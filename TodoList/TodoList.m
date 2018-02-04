@@ -36,17 +36,20 @@
 - (void) save {
     NSUserDefaults *savedData = [NSUserDefaults standardUserDefaults];
     
+    //UNFINISHED
     NSMutableArray *unfinishedDictionaries = [[NSMutableArray alloc] init];
     for(Todo *todo in self.unfinishedTasksArray) {
         NSDictionary *dictionary = @{@"Name": todo.todoTaskName,
                                      @"Priority": @(todo.priorityMark)
                                      };
         [unfinishedDictionaries addObject:dictionary];
+        
         NSLog(@"PRIORITY? %d", todo.priorityMark);
-        [dictionary allValues];
     }
     [savedData setObject:unfinishedDictionaries forKey:@"Unfinished"];
+    [savedData synchronize];
     
+    //FINISHED:
     NSMutableArray *finishedDictionaries = [[NSMutableArray alloc] init];
     for(Todo *todo in self.finishedTasksArray) {
         NSDictionary *dictionary = @{ @"Name": todo.todoTaskName};
@@ -62,9 +65,10 @@
     NSUserDefaults *savedData = [NSUserDefaults standardUserDefaults];
     
     self.unfinishedTasksArray = [[NSMutableArray alloc] init];
+
     for(NSDictionary *dictionary in [savedData objectForKey:@"Unfinished"]) {
         NSString *name = [dictionary valueForKey:@"Name"];
-        BOOL priority = [dictionary valueForKey:@"Priority"];
+        BOOL priority = [dictionary valueForKey:@"Priority"];        
         Todo *todo = [[Todo alloc] initTask:name priority:priority];
         
         [self.unfinishedTasksArray addObject:todo];

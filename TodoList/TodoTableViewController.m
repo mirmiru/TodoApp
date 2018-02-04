@@ -17,34 +17,20 @@
 @property NSDictionary *dictionary;
 @end
 
-@implementation TodoTableViewController {
-    //BOOL firstLoad;
-}
+@implementation TodoTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //firstLoad = YES;
     self.navigationItem.title = @"Todo List";
     self.todoList = [[TodoList alloc] initTodoList];
     
-    //NSUserDefaults *savedData = [NSUserDefaults standardUserDefaults];
     self.todoList.unfinishedTasksArray = [self.todoList loadUnfinishedDictionaries];
     self.todoList.finishedTasksArray = [self.todoList loadFinishedDictionaries];
-    //self.todoList.unfinishedTasksArray = array;
 }
 
 //Reload tables
 - (void)viewWillAppear:(BOOL)animated {
     [self.tableView reloadData];
-    /*
-     if (!firstLoad) {
-     [self.todoList save];
-     NSUserDefaults *savedData = [NSUserDefaults standardUserDefaults];
-     NSMutableArray *array = [self.todoList loadUnfinishedDictionaries];
-     NSLog(@"Found: %d", (int)[array count]);
-     }
-     firstLoad = NO;
-     */
 }
 
 - (void)didReceiveMemoryWarning {
@@ -67,15 +53,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TodoCell" forIndexPath:indexPath];
-    
     NSString *priority;
-    
+   
     if(indexPath.section == 0) {
         cell.textLabel.text = [self.todoList.unfinishedTasksArray[indexPath.row] todoTaskName];
+        
         if ([self.todoList.unfinishedTasksArray[indexPath.row] priorityMark]) {
             priority = @"PRIO";
             cell.backgroundColor = [UIColor colorWithRed:0.98 green:0.82 blue:0.52 alpha:1.0];
-        } else {
+        }        
+        else {
             cell.backgroundColor = [UIColor whiteColor];
         }
         cell.accessoryType = UITableViewCellAccessoryNone;
@@ -85,15 +72,7 @@
         cell.backgroundColor = [UIColor whiteColor];
     }
     cell.detailTextLabel.text = priority;
-    
-    //Check if task marked as finished
-    /*
-     if ([self.todoList.unfinishedTasksArray[indexPath.row] finished]) {
-     cell.accessoryType = UITableViewCellAccessoryCheckmark;
-     } else {
-     cell.accessoryType = UITableViewCellAccessoryNone;
-     }
-     */
+
     return cell;
 }
 

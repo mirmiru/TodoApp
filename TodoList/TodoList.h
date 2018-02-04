@@ -15,16 +15,9 @@
 @property NSMutableArray *unfinishedTasksArray;
 @property NSMutableArray *finishedTasksArray;
 @property NSArray *sections;
-//@property NSMutableDictionary *unfinishedDictionaries;
-//@property NSMutableDictionary *finishedDictionaries;
-//@property NSMutableArray *savedUnfinishedTaskNames;
-//@property NSMutableArray *savedFinishedTaskNames;
-//@property NSUserDefaults *savedData;
-
 
 //Methods
 - (instancetype) initTodoList;
-//- (void) addNewTask:(Todo*)todoTask;
 - (void) save;
 - (NSMutableArray*) loadUnfinishedDictionaries;
 - (NSMutableArray*) loadFinishedDictionaries;
