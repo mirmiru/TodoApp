@@ -24,8 +24,8 @@
     self.navigationItem.title = @"Todo List";
     self.todoList = [[TodoList alloc] initTodoList];
     
-    self.todoList.unfinishedTasksArray = [self.todoList loadUnfinishedDictionaries];
-    self.todoList.finishedTasksArray = [self.todoList loadFinishedDictionaries];
+    [self.todoList loadUnfinishedDictionaries];
+    [self.todoList loadFinishedDictionaries];
 }
 
 //Reload tables
@@ -57,12 +57,10 @@
    
     if(indexPath.section == 0) {
         cell.textLabel.text = [self.todoList.unfinishedTasksArray[indexPath.row] todoTaskName];
-        
         if ([self.todoList.unfinishedTasksArray[indexPath.row] priorityMark]) {
             priority = @"PRIO";
             cell.backgroundColor = [UIColor colorWithRed:0.98 green:0.82 blue:0.52 alpha:1.0];
-        }        
-        else {
+        } else {
             cell.backgroundColor = [UIColor whiteColor];
         }
         cell.accessoryType = UITableViewCellAccessoryNone;
@@ -72,7 +70,6 @@
         cell.backgroundColor = [UIColor whiteColor];
     }
     cell.detailTextLabel.text = priority;
-
     return cell;
 }
 

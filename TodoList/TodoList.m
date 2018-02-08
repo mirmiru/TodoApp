@@ -16,9 +16,14 @@
 -(instancetype)initTodoList {
     self = [super init];
     if (self) {
+        if (self.finishedTasksArray && self.unfinishedTasksArray) {
+            self.finishedTasksArray = [self loadFinishedDictionaries];
+            self.unfinishedTasksArray = [self loadUnfinishedDictionaries];
+        } else {
+            self.finishedTasksArray = [[NSMutableArray alloc] init];
+            self.unfinishedTasksArray = [[NSMutableArray alloc] init];
+        }
         self.sections = @[@"Unfinished", @"Finished"];
-        self.finishedTasksArray = [[NSMutableArray alloc] init];
-        self.unfinishedTasksArray = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -39,8 +44,9 @@
     //UNFINISHED
     NSMutableArray *unfinishedDictionaries = [[NSMutableArray alloc] init];
     for(Todo *todo in self.unfinishedTasksArray) {
+        NSNumber *prio = [NSNumber numberWithInt:todo.priorityMark];
         NSDictionary *dictionary = @{@"Name": todo.todoTaskName,
-                                     @"Priority": @(todo.priorityMark)
+                                     @"Priority": prio
                                      };
         [unfinishedDictionaries addObject:dictionary];
         
@@ -68,7 +74,8 @@
 
     for(NSDictionary *dictionary in [savedData objectForKey:@"Unfinished"]) {
         NSString *name = [dictionary valueForKey:@"Name"];
-        BOOL priority = [dictionary valueForKey:@"Priority"];        
+        BOOL priority = [[dictionary valueForKey:@"Priority"] boolValue];
+        //BOOL priority = [NSNumber numberWithInt:(int)[dictionary valueForKey:@"Priority"]];
         Todo *todo = [[Todo alloc] initTask:name priority:priority];
         
         [self.unfinishedTasksArray addObject:todo];
